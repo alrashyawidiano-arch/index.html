@@ -1,0 +1,899 @@
+!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANPORE-PRO | MP-ASI Kolagen Sisik Bandeng Tinggi Protein & Zero Waste</title>
+    <!-- Load Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        mint: {
+                            50: '#F0FDF9',
+                            100: '#CCFBEF',
+                            200: '#99F6E0',
+                            500: '#10B981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064E3B',
+                        },
+                        lavender: {
+                            50: '#F5F3FF',
+                            100: '#EDE9FE',
+                            200: '#DDD6FE',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                            700: '#6D28D9',
+                        },
+                        softpink: '#FFF0F3',
+                        softyellow: '#FFF9DB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom subtle animations & clean flat aesthetic helpers */
+        body {
+            background-color: #FFFFFF;
+            color: #1E293B;
+            overflow-x: hidden;
+        }
+        .step-card {
+            transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-4px);
+        }
+        .faq-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease-out;
+        }
+        .faq-item.active .faq-content {
+            grid-template-rows: 1fr;
+        }
+        .faq-inner {
+            overflow: hidden;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.85); opacity: 0.9; }
+            70% { transform: scale(1.6); opacity: 0; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        .map-pin-pulse::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 9999px;
+            background-color: currentColor;
+            animation: pulse-ring 2s infinite ease-out;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-mint-100 selection:text-mint-900">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl bg-mint-500 flex items-center justify-center text-white shadow-sm group-hover:bg-mint-600 transition">
+                    <!-- Custom Flat Bowl & Leaf SVG Icon -->
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3c-1.5 2.5-1.5 5 0 7 1.5-2 1.5-4.5 0-7z"/>
+                        <path d="M7 7c-1 1.5-.5 3.5 1 4.5"/>
+                        <path d="M17 7c1 1.5.5 3.5-1 4.5"/>
+                        <path d="M4 13h16a8 8 0 0 1-16 0Z"/>
+                        <path d="M9 21h6"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-display font-extrabold text-xl tracking-tight text-slate-900">BANPORE<span class="text-mint-600">-PRO</span></span>
+                    <span class="hidden sm:block text-[11px] font-medium text-slate-500 -mt-1">MP-ASI Kolagen Semarang</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+                <a href="#masalah" class="hover:text-mint-600 transition">Fakta & Masalah</a>
+                <a href="#cara-kerja" class="hover:text-mint-600 transition">Cara Kerja</a>
+                <a href="#keunggulan" class="hover:text-mint-600 transition">Why Us?</a>
+                <a href="#testimoni" class="hover:text-mint-600 transition">Testimoni</a>
+                <a href="#asal-bahan" class="hover:text-mint-600 transition">Local Pride</a>
+                <a href="#faq" class="hover:text-mint-600 transition">FAQ</a>
+            </nav>
+
+            <!-- Action CTA -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="openOrderModal()" class="bg-mint-600 hover:bg-mint-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition cursor-pointer flex items-center gap-1.5">
+                    <span>Pesan Sekarang</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-5 space-y-2">
+            <a href="#masalah" class="mobile-link block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-700">1. Fakta & Masalah</a>
+            <a href="#cara-kerja" class="mobile-link block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-700">2. Cara Kerja di Tubuh</a>
+            <a href="#keunggulan" class="mobile-link block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-700">3. Why Us? (Perbandingan)</a>
+            <a href="#testimoni" class="mobile-link block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-700">4. Testimoni Panelis</a>
+            <a href="#asal-bahan" class="mobile-link block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-700">5. Peta Asal Bahan Lokal</a>
+            <a href="#faq" class="mobile-link block py-2 px-3 rounded-lg text-sm font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-700">6. FAQ (Tanya Jawab)</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. HERO SECTION -->
+        <section class="relative overflow-hidden bg-gradient-to-b from-mint-50/80 via-white to-white pt-10 pb-16 sm:pt-16 sm:pb-24">
+            <!-- Subtle Flat Geometric Shapes -->
+            <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-lavender-100/60 blur-2xl pointer-events-none"></div>
+            <div class="absolute top-32 -left-24 w-72 h-72 rounded-full bg-mint-100/70 blur-2xl pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+                    <!-- Left Column: Copywriting -->
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lavender-100 text-lavender-700 text-xs sm:text-sm font-semibold mb-5">
+                            <span class="w-2 h-2 rounded-full bg-lavender-600"></span>
+                            Inovasi Pangan Fungsional Zero-Waste Kota Semarang
+                        </div>
+
+                        <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-[44px] text-slate-900 leading-[1.18] tracking-tight mb-5">
+                            BANPORE-PRO: <span class="text-mint-600">MP-ASI Kolagen Sisik Bandeng</span> Tinggi Protein untuk Generasi Bebas Stunting
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 max-w-2xl mx-auto lg:mx-0">
+                            Perpaduan ilmiah <strong>kolagen sisik ikan bandeng</strong>, <strong>kacang hijau</strong>, dan <strong>bayam lokal</strong> yang diformulasikan khusus sesuai standar SNI. Nutrisi premium untuk tumbuh kembang optimal si kecil dengan harga yang ramah bagi semua keluarga.
+                        </p>
+
+                        <!-- 4 Key Highlight Badges -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-8 max-w-2xl mx-auto lg:mx-0">
+                            <div class="bg-white border border-mint-200 rounded-2xl p-3 text-center">
+                                <span class="block text-xs text-slate-500 font-medium">Standar Mutu</span>
+                                <span class="font-display font-bold text-sm sm:text-base text-mint-700">✓ Lolos SNI</span>
+                            </div>
+                            <div class="bg-white border border-lavender-200 rounded-2xl p-3 text-center">
+                                <span class="block text-xs text-slate-500 font-medium">Kandungan Gizi</span>
+                                <span class="font-display font-bold text-sm sm:text-base text-lavender-700">18,5% Protein</span>
+                            </div>
+                            <div class="bg-white border border-mint-200 rounded-2xl p-3 text-center">
+                                <span class="block text-xs text-slate-500 font-medium">Harga Hemat</span>
+                                <span class="font-display font-bold text-sm sm:text-base text-mint-700">Rp 3.500/saji</span>
+                            </div>
+                            <div class="bg-white border border-lavender-200 rounded-2xl p-3 text-center">
+                                <span class="block text-xs text-slate-500 font-medium">Ekologi</span>
+                                <span class="font-display font-bold text-sm sm:text-base text-lavender-700">100% Zero Waste</span>
+                            </div>
+                        </div>
+
+                        <!-- Primary & Secondary CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+                            <button onclick="openOrderModal()" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-mint-600 hover:bg-mint-700 text-white font-bold text-base transition flex items-center justify-center gap-2 cursor-pointer">
+                                <span>Pesan BANPORE-PRO Sekarang</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </button>
+                            <a href="#cara-kerja" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-lavender-50 hover:bg-lavender-100 text-lavender-700 font-bold text-base border border-lavender-200 transition text-center">
+                                Pelajari Cara Kerjanya
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Clean Flat Vector Product Illustration -->
+                    <div class="lg:col-span-5">
+                        <div class="relative bg-mint-50 border-2 border-mint-200 rounded-3xl p-6 sm:p-8">
+                            <!-- Top Floating Pill -->
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-white text-mint-700 text-xs font-bold border border-mint-200">Formulasi Terbaik (F1)</span>
+                                <span class="px-3 py-1 rounded-full bg-lavender-600 text-white text-xs font-bold">Usia 6+ Bulan</span>
+                            </div>
+
+                            <!-- Flat Vector SVG Illustration of BANPORE-PRO Pouch & Natural Ingredients -->
+                            <div class="w-full aspect-square max-w-[320px] mx-auto flex items-center justify-center">
+                                <svg viewBox="0 0 320 320" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Background Circle -->
+                                    <circle cx="160" cy="160" r="135" fill="#FFFFFF" stroke="#CCFBEF" stroke-width="4"/>
+                                    <circle cx="160" cy="160" r="112" fill="#F5F3FF"/>
+
+                                    <!-- Decorative Spinach Leaves (Left) -->
+                                    <path d="M58 188C40 165 44 132 68 122C82 145 78 175 58 188Z" fill="#10B981"/>
+                                    <path d="M68 122C62 150 60 170 58 188" stroke="#047857" stroke-width="2.5" stroke-linecap="round"/>
+
+                                    <!-- Decorative Milkfish Scale Shield (Right) -->
+                                    <g transform="translate(226, 118)">
+                                        <rect x="0" y="0" width="54" height="54" rx="16" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2.5"/>
+                                        <path d="M14 24C14 18 20 14 27 14C34 14 40 18 40 24C40 31 27 40 27 40C27 40 14 31 14 24Z" fill="#8B5CF6"/>
+                                        <circle cx="27" cy="23" r="4" fill="#FFFFFF"/>
+                                    </g>
+
+                                    <!-- Product Pouch Illustration -->
+                                    <rect x="92" y="54" width="136" height="196" rx="22" fill="#10B981" stroke="#064E3B" stroke-width="3"/>
+                                    <!-- Pouch Top Seal -->
+                                    <path d="M92 78H228" stroke="#064E3B" stroke-width="2.5" stroke-dasharray="6 4"/>
+                                    <!-- Pouch Label Card -->
+                                    <rect x="106" y="92" width="108" height="140" rx="14" fill="#FFFFFF"/>
+                                    <rect x="120" y="106" width="80" height="18" rx="9" fill="#EDE9FE"/>
+                                    <text x="160" y="118" text-anchor="middle" fill="#6D28D9" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="9">MP-ASI KOLAGEN</text>
+                                    <text x="160" y="142" text-anchor="middle" fill="#064E3B" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="14">BANPORE-PRO</text>
+                                    <text x="160" y="156" text-anchor="middle" fill="#64748B" font-family="Inter, sans-serif" font-weight="600" font-size="8">Bandeng • Kacang Hijau • Bayam</text>
+
+                                    <!-- Bowl Icon inside Pouch -->
+                                    <path d="M128 176H192C192 194 178 206 160 206C142 206 128 194 128 176Z" fill="#10B981"/>
+                                    <path d="M144 168C144 163 148 160 148 156" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M160 166C160 161 164 158 164 154" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M176 168C176 163 180 160 180 156" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round"/>
+
+                                    <!-- Price Pill inside Pouch -->
+                                    <rect x="125" y="213" width="70" height="14" rx="7" fill="#CCFBEF"/>
+                                    <text x="160" y="223" text-anchor="middle" fill="#047857" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="8.5">Rp 3.500 / Saji</text>
+
+                                    <!-- Mung Beans Illustration (Bottom Left & Right) -->
+                                    <ellipse cx="76" cy="236" rx="12" ry="8" transform="rotate(-20 76 236)" fill="#059669"/>
+                                    <ellipse cx="96" cy="252" rx="10" ry="7" transform="rotate(15 96 252)" fill="#10B981"/>
+                                    <ellipse cx="238" cy="236" rx="12" ry="8" transform="rotate(25 238 236)" fill="#059669"/>
+                                    <ellipse cx="220" cy="254" rx="10" ry="7" transform="rotate(-15 220 254)" fill="#10B981"/>
+                                </svg>
+                            </div>
+
+                            <!-- Bottom Ingredient Summary Strip -->
+                            <div class="mt-3 bg-white rounded-2xl p-3.5 border border-mint-100 flex items-center justify-around text-center">
+                                <div>
+                                    <span class="block text-xs font-bold text-slate-800">🐟 Kolagen Bandeng</span>
+                                    <span class="text-[11px] text-slate-500">Peptida Tulang</span>
+                                </div>
+                                <div class="h-6 w-px bg-slate-200"></div>
+                                <div>
+                                    <span class="block text-xs font-bold text-slate-800">🌱 Kacang Hijau</span>
+                                    <span class="text-[11px] text-slate-500">Protein Nabati</span>
+                                </div>
+                                <div class="h-6 w-px bg-slate-200"></div>
+                                <div>
+                                    <span class="block text-xs font-bold text-slate-800">🥬 Bayam Segar</span>
+                                    <span class="text-[11px] text-slate-500">Zat Besi & Serat</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. "THE PROBLEM" SECTION (Fakta Mencengangkan soal Stunting & Limbah) -->
+        <section id="masalah" class="py-16 sm:py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-lavender-100 text-lavender-700 text-xs font-bold uppercase tracking-wider mb-3">Mengapa BANPORE-PRO Hadir?</span>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-slate-900 mb-3">
+                        Dua Masalah Besar di Sekitar Kita yang Saling Menjawab
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base">
+                        Sebelum memilih MP-ASI untuk buah hati, mari melihat fakta nyata kondisi gizi anak dan potensi pangan lokal di Kota Semarang.
+                    </p>
+                </div>
+
+                <!-- Two Side-by-Side Highlight Cards -->
+                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+                    <!-- Card 1: Soft Pink (#FFF0F3) - Data Dinkes Stunting -->
+                    <div style="background-color: #FFF0F3;" class="rounded-3xl p-7 sm:p-9 border-2 border-rose-200/80 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-rose-700 text-xs font-bold border border-rose-200">
+                                    📊 Data Dinkes Kota Semarang
+                                </span>
+                                <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center">
+                                    <!-- Child Growth Chart Icon -->
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 mb-3">
+                                Tahukah Ayah & Bunda?
+                            </h3>
+                            <p class="text-slate-800 text-base sm:text-lg leading-relaxed mb-6">
+                                Di Kota Semarang, masih terdapat <span class="font-extrabold text-rose-700 bg-white px-2 py-0.5 rounded-lg border border-rose-200">2.087 balita yang berisiko stunting</span>. Kekurangan asupan protein hewani berkualitas pada 1.000 Hari Pertama Kehidupan (HPK) menjadi pemicu utama terhambatnya pertumbuhan tulang anak.
+                            </p>
+                        </div>
+
+                        <div class="bg-white/80 rounded-2xl p-4 border border-rose-200/70 flex items-center gap-4">
+                            <div class="text-3xl font-display font-extrabold text-rose-600">2.087</div>
+                            <div class="text-xs sm:text-sm text-slate-600 font-medium">
+                                Balita berisiko stunting membutuhkan intervensi MP-ASI tinggi protein yang terjangkau.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Soft Yellow (#FFF9DB) - Data Limbah Sisik Bandeng -->
+                    <div style="background-color: #FFF9DB;" class="rounded-3xl p-7 sm:p-9 border-2 border-amber-200/80 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-amber-800 text-xs font-bold border border-amber-200">
+                                    ♻️ Fakta Limbah Perikanan Lokal
+                                </span>
+                                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center">
+                                    <!-- Fish / Eco Cycle Icon -->
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 mb-3">
+                                Harta Karun Gizi yang Terbuang
+                            </h3>
+                            <p class="text-slate-800 text-base sm:text-lg leading-relaxed mb-6">
+                                Sementara itu, <span class="font-extrabold text-amber-800 bg-white px-2 py-0.5 rounded-lg border border-amber-200">ratusan ton sisik ikan bandeng dibuang sia-sia</span> setiap harinya sebagai limbah industri pengolahan ikan—padahal sisik bandeng kaya akan <strong>kolagen & asam amino</strong> pembentuk tulang!
+                            </p>
+                        </div>
+
+                        <div class="bg-white/80 rounded-2xl p-4 border border-amber-200/70 flex items-center gap-4">
+                            <div class="text-2xl sm:text-3xl font-display font-extrabold text-amber-700">100+ Ton</div>
+                            <div class="text-xs sm:text-sm text-slate-600 font-medium">
+                                Limbah sisik bandeng disulap menjadi kolagen bioaktif bernilai gizi tinggi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. "THE SOLUTION" SECTION (Cara Kerja BANPORE-PRO di Dalam Tubuh) -->
+        <section id="cara-kerja" class="py-16 sm:py-24 bg-mint-50/60 border-y border-mint-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-mint-100 text-mint-800 text-xs font-bold uppercase tracking-wider mb-3">Sains yang Mudah Dipahami</span>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-slate-900 mb-3">
+                        Bagaimana BANPORE-PRO Bekerja di Tubuh Si Kecil?
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base">
+                        Dari mangkuk MP-ASI hingga merangsang pertumbuhan sel tulang secara alami dalam 4 tahapan sederhana.
+                    </p>
+                </div>
+
+                <!-- 4-Step Interactive Arrow Flow Infographic -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+                    <!-- Step 1 -->
+                    <div class="step-card relative bg-white rounded-3xl p-6 border-2 border-mint-200 flex flex-col">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-mint-600 text-white font-display font-extrabold text-base flex items-center justify-center">1</span>
+                            <span class="text-xs font-bold text-mint-700 bg-mint-50 px-3 py-1 rounded-full">Asupan Nutrisi</span>
+                        </div>
+
+                        <!-- Vector Icon: Bowl of BANPORE-PRO -->
+                        <div class="w-16 h-16 rounded-2xl bg-mint-50 flex items-center justify-center mb-5 text-mint-600">
+                            <svg class="w-9 h-9" viewBox="0 0 36 36" fill="none">
+                                <path d="M6 18H30C30 24.6274 24.6274 30 18 30C11.3726 30 6 24.6274 6 18Z" fill="#10B981"/>
+                                <circle cx="13" cy="14" r="2.5" fill="#8B5CF6"/>
+                                <circle cx="18" cy="12" r="2.5" fill="#059669"/>
+                                <circle cx="23" cy="14" r="2.5" fill="#8B5CF6"/>
+                                <path d="M12 31H24" stroke="#064E3B" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Makan BANPORE-PRO</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Si kecil menyantap bubur MP-ASI lembut yang kaya <strong>Kolagen Sisik Bandeng + Kacang Hijau + Bayam</strong>.
+                        </p>
+
+                        <!-- Desktop Right Arrow Connector -->
+                        <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-lavender-600 text-white items-center justify-center shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card relative bg-white rounded-3xl p-6 border-2 border-lavender-200 flex flex-col">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-lavender-600 text-white font-display font-extrabold text-base flex items-center justify-center">2</span>
+                            <span class="text-xs font-bold text-lavender-700 bg-lavender-50 px-3 py-1 rounded-full">Pencernaan</span>
+                        </div>
+
+                        <!-- Vector Icon: Bioactive Peptides -->
+                        <div class="w-16 h-16 rounded-2xl bg-lavender-50 flex items-center justify-center mb-5 text-lavender-600">
+                            <svg class="w-9 h-9" viewBox="0 0 36 36" fill="none">
+                                <circle cx="11" cy="18" r="4" fill="#8B5CF6"/>
+                                <circle cx="18" cy="11" r="4" fill="#10B981"/>
+                                <circle cx="25" cy="18" r="4" fill="#8B5CF6"/>
+                                <circle cx="18" cy="25" r="4" fill="#10B981"/>
+                                <path d="M14 15L15 14M21 14L22 15M22 21L21 22M15 22L14 21" stroke="#6D28D9" stroke-width="2.2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Dicerna Tubuh</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Sistem pencernaan memecah nutrisi menjadi <strong>Peptida Bioaktif & Asam Amino Esensial</strong> yang cepat diserap.
+                        </p>
+
+                        <!-- Desktop Right Arrow Connector -->
+                        <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-lavender-600 text-white items-center justify-center shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card relative bg-white rounded-3xl p-6 border-2 border-mint-200 flex flex-col">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-mint-600 text-white font-display font-extrabold text-base flex items-center justify-center">3</span>
+                            <span class="text-xs font-bold text-mint-700 bg-mint-50 px-3 py-1 rounded-full">Aktivasi Sel</span>
+                        </div>
+
+                        <!-- Vector Icon: Receptor Lock & Key (IGF-1R & BMP-2) -->
+                        <div class="w-16 h-16 rounded-2xl bg-mint-50 flex items-center justify-center mb-5 text-mint-600">
+                            <svg class="w-9 h-9" viewBox="0 0 36 36" fill="none">
+                                <path d="M18 6V14M18 14C14.6863 14 12 16.6863 12 20H24C24 16.6863 21.3137 14 18 14Z" stroke="#059669" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="18" cy="25" r="5" fill="#8B5CF6"/>
+                                <path d="M10 10L13 13M26 10L23 13" stroke="#10B981" stroke-width="2.2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Bekerja di Sel</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Peptida mengaktifkan "sakelar" pertumbuhan dengan berikatan pada reseptor <strong>IGF-1R & BMP-2</strong>.
+                        </p>
+
+                        <!-- Desktop Right Arrow Connector -->
+                        <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-lavender-600 text-white items-center justify-center shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card relative bg-gradient-to-br from-mint-600 to-mint-700 text-white rounded-3xl p-6 border-2 border-mint-500 flex flex-col">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-9 h-9 rounded-xl bg-white text-mint-700 font-display font-extrabold text-base flex items-center justify-center">4</span>
+                            <span class="text-xs font-bold text-mint-900 bg-mint-200 px-3 py-1 rounded-full">Hasil Optimal</span>
+                        </div>
+
+                        <!-- Vector Icon: Bone Growth & Height -->
+                        <div class="w-16 h-16 rounded-2xl bg-white/15 flex items-center justify-center mb-5 text-white">
+                            <svg class="w-9 h-9" viewBox="0 0 36 36" fill="none">
+                                <path d="M18 29V9M18 9L12 15M18 9L24 15" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 29H27" stroke="#99F6E0" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="font-display font-bold text-lg text-white mb-2">Hasil Optimal!</h3>
+                        <p class="text-sm text-mint-50 leading-relaxed">
+                            <strong>Pertumbuhan tulang optimal & Cegah Stunting!</strong> Tinggi dan berat badan si kecil tumbuh sesuai kurva ideal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. "WHY US?" SECTION (Perbandingan dengan MP-ASI Pabrikan) -->
+        <section id="keunggulan" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-lavender-100 text-lavender-700 text-xs font-bold uppercase tracking-wider mb-3">Perbandingan Jujur</span>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-slate-900 mb-3">
+                        Mengapa Memilih BANPORE-PRO?
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base">
+                        Lihat perbedaan nyata kandungan gizi, harga, dan dampak lingkungan antara MP-ASI pabrikan biasa dengan BANPORE-PRO.
+                    </p>
+                </div>
+
+                <!-- Responsive Clean Comparison Table -->
+                <div class="overflow-x-auto rounded-3xl border-2 border-slate-200 bg-white">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr>
+                                <th class="p-5 sm:p-6 bg-slate-50 text-slate-600 font-display font-bold text-sm sm:text-base border-b border-slate-200 w-1/4">
+                                    Aspek Penilaian
+                                </th>
+                                <th class="p-5 sm:p-6 bg-slate-50 text-slate-500 font-display font-bold text-sm sm:text-base border-b border-slate-200 w-1/3">
+                                    MP-ASI Pabrikan Umum
+                                </th>
+                                <th class="p-5 sm:p-6 bg-mint-600 text-white font-display font-extrabold text-base sm:text-lg border-b border-mint-600 w-5/12">
+                                    <div class="flex items-center justify-between">
+                                        <span>BANPORE-PRO 🌟</span>
+                                        <span class="text-[11px] font-bold uppercase bg-white text-mint-700 px-2.5 py-1 rounded-full">Pilihan Terbaik</span>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-sm sm:text-base">
+                            <!-- Row 1: Harga -->
+                            <tr>
+                                <td class="p-5 sm:p-6 font-bold text-slate-800">Harga per Sajian</td>
+                                <td class="p-5 sm:p-6 text-slate-500">Rp 15.000 – Rp 30.000</td>
+                                <td class="p-5 sm:p-6 bg-mint-50/90 font-bold text-mint-900">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-7 h-7 rounded-full bg-mint-500 text-white flex items-center justify-center shrink-0 text-sm font-bold">✓</span>
+                                        <span>Rp 3.500 / sajian <span class="block sm:inline text-xs font-medium text-mint-700">(Jauh lebih hemat!)</span></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 2: Kandungan Gizi -->
+                            <tr>
+                                <td class="p-5 sm:p-6 font-bold text-slate-800">Kandungan Gizi</td>
+                                <td class="p-5 sm:p-6 text-slate-500">Dominan Karbohidrat</td>
+                                <td class="p-5 sm:p-6 bg-mint-50/90 font-bold text-mint-900">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-7 h-7 rounded-full bg-mint-500 text-white flex items-center justify-center shrink-0 text-sm font-bold">✓</span>
+                                        <span>Protein Tinggi 18,5% & Kolagen Aktif</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 3: Standar Keamanan -->
+                            <tr>
+                                <td class="p-5 sm:p-6 font-bold text-slate-800">Standar Keamanan</td>
+                                <td class="p-5 sm:p-6 text-slate-500">Berstandar</td>
+                                <td class="p-5 sm:p-6 bg-mint-50/90 font-bold text-mint-900">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-7 h-7 rounded-full bg-mint-500 text-white flex items-center justify-center shrink-0 text-sm font-bold">✓</span>
+                                        <span>Lolos Uji Standar SNI MP-ASI</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 4: Dampak Lingkungan -->
+                            <tr>
+                                <td class="p-5 sm:p-6 font-bold text-slate-800">Dampak Lingkungan</td>
+                                <td class="p-5 sm:p-6 text-slate-500">Tidak memanfaatkan limbah</td>
+                                <td class="p-5 sm:p-6 bg-mint-50/90 font-bold text-mint-900">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-7 h-7 rounded-full bg-mint-500 text-white flex items-center justify-center shrink-0 text-sm font-bold">✓</span>
+                                        <span>Zero Waste & Ramah Lingkungan</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. "TESTIMONI" SECTION (Kesan Panelis & Pembimbing) -->
+        <section id="testimoni" class="py-16 sm:py-24 bg-lavender-50/60 border-y border-lavender-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <span class="inline-block px-3.5 py-1 rounded-full bg-lavender-100 text-lavender-700 text-xs font-bold uppercase tracking-wider mb-3">Teruji Secara Ilmiah & Sensoris</span>
+                        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-slate-900">
+                            Kata Panelis & Pembimbing Penelitian
+                        </h2>
+                    </div>
+
+                    <!-- Organoleptic Test Score Badge -->
+                    <div class="inline-flex items-center gap-3.5 bg-white border-2 border-mint-200 px-5 py-3.5 rounded-2xl self-start">
+                        <div class="w-11 h-11 rounded-xl bg-mint-100 text-mint-700 font-display font-extrabold text-lg flex items-center justify-center">
+                            4.0+
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold uppercase text-mint-700">Uji Organoleptik</div>
+                            <div class="text-sm font-extrabold text-slate-900">Skor Rasa & Aroma 4,0+ / 5,0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+                    <!-- Quote 1: Panelis F1 -->
+                    <div class="bg-white rounded-3xl p-7 sm:p-8 border border-lavender-200/80 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-400 mb-4">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                <span class="text-xs font-semibold text-slate-400 ml-2">Panelis Uji Sensoris</span>
+                            </div>
+                            <blockquote class="font-display font-semibold text-lg sm:text-xl text-slate-800 leading-relaxed mb-6">
+                                "Teksturnya lembut, aromanya tidak amis, anak saya pasti suka."
+                            </blockquote>
+                        </div>
+                        <div class="flex items-center gap-3.5 pt-4 border-t border-slate-100">
+                            <div class="w-11 h-11 rounded-full bg-mint-100 text-mint-700 font-display font-extrabold text-sm flex items-center justify-center">
+                                F1
+                            </div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-sm">Panelis F1</div>
+                                <div class="text-xs text-slate-500">Peserta Uji Organoleptik BANPORE-PRO</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quote 2: Dosen Pembimbing Penelitian -->
+                    <div class="bg-white rounded-3xl p-7 sm:p-8 border border-lavender-200/80 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-lavender-600 mb-4">
+                                <span class="px-2.5 py-0.5 rounded-full bg-lavender-50 text-xs font-bold">Validasi Akademik</span>
+                            </div>
+                            <blockquote class="font-display font-semibold text-lg sm:text-xl text-slate-800 leading-relaxed mb-6">
+                                "Inovasi pangan fungsional yang menjawab persoalan stunting dengan pendekatan ilmiah sekaligus memberi nilai tambah pada limbah perikanan lokal."
+                            </blockquote>
+                        </div>
+                        <div class="flex items-center gap-3.5 pt-4 border-t border-slate-100">
+                            <div class="w-11 h-11 rounded-full bg-lavender-100 text-lavender-700 font-display font-extrabold text-sm flex items-center justify-center">
+                                DP
+                            </div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-sm">Dosen Pembimbing Penelitian</div>
+                                <div class="text-xs text-slate-500">Pembimbing Riset Pangan Fungsional</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. "PETA LOKASI / ASAL BAHAN" SECTION (Local Pride Semarang) -->
+        <section id="asal-bahan" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-mint-50 border-2 border-mint-200 rounded-3xl p-6 sm:p-10 lg:p-12">
+                    <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                        <!-- Left: Description & Origin Pins -->
+                        <div class="lg:col-span-6">
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white text-mint-800 text-xs font-bold border border-mint-200 mb-4">
+                                📍 Local Pride Semarang & Jawa Tengah
+                            </span>
+                            <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 mb-4">
+                                100% Bahan Pilihan dari Nelayan & Petani Lokal
+                            </h2>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-7">
+                                Setiap sajian BANPORE-PRO mendukung ekonomi sirkular lokal dengan menyerap hasil samping pengolahan ikan di pesisir Semarang dan hasil panen petani Jawa Tengah.
+                            </p>
+
+                            <div class="space-y-4">
+                                <!-- Pin 1 Card -->
+                                <button onclick="highlightPin(1)" id="pin-card-1" class="w-full text-left bg-white p-4 sm:p-5 rounded-2xl border-2 border-mint-500 transition cursor-pointer flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-mint-600 text-white font-bold flex items-center justify-center shrink-0 mt-0.5">
+                                        1
+                                    </div>
+                                    <div>
+                                        <h3 class="font-display font-bold text-base text-slate-900">Sisik Ikan Bandeng Pilihan</h3>
+                                        <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Sentra Pengolahan Bandeng Kota Semarang — Diekstraksi higienis menjadi kolagen murni.</p>
+                                    </div>
+                                </button>
+
+                                <!-- Pin 2 Card -->
+                                <button onclick="highlightPin(2)" id="pin-card-2" class="w-full text-left bg-white p-4 sm:p-5 rounded-2xl border-2 border-transparent hover:border-lavender-300 transition cursor-pointer flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-lavender-600 text-white font-bold flex items-center justify-center shrink-0 mt-0.5">
+                                        2
+                                    </div>
+                                    <div>
+                                        <h3 class="font-display font-bold text-base text-slate-900">Kacang Hijau & Bayam Segar</h3>
+                                        <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Petani Lokal Jawa Tengah — Sumber protein nabati, serat, dan zat besi alami.</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right: Interactive Stylized Vector Map of Semarang & Central Java -->
+                        <div class="lg:col-span-6">
+                            <div class="relative bg-white rounded-3xl p-4 sm:p-6 border border-mint-200 overflow-hidden">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Peta Sumber Bahan Baku</span>
+                                    <span id="map-status-label" class="text-xs font-bold text-mint-700 bg-mint-50 px-2.5 py-1 rounded-full">Klik pin untuk detail</span>
+                                </div>
+
+                                <!-- Stylized Flat Vector Map SVG -->
+                                <div class="relative w-full aspect-[4/3] bg-sky-50/70 rounded-2xl border border-slate-100 overflow-hidden">
+                                    <svg viewBox="0 0 400 300" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Sea / Java Sea North -->
+                                        <rect width="400" height="300" fill="#EFF6FF"/>
+                                        <!-- Sea Waves -->
+                                        <path d="M40 45Q55 38 70 45T100 45" stroke="#BFDBFE" stroke-width="2.5" stroke-linecap="round"/>
+                                        <path d="M270 35Q285 28 300 35T330 35" stroke="#BFDBFE" stroke-width="2.5" stroke-linecap="round"/>
+                                        <text x="200" y="34" text-anchor="middle" fill="#60A5FA" font-family="Inter, sans-serif" font-weight="700" font-size="10" letter-spacing="2">LAUT JAWA</text>
+
+                                        <!-- Central Java Landmass Abstract Shape -->
+                                        <path d="M0 110C45 108 90 115 135 112C175 109 210 85 245 88C285 92 330 118 400 120V300H0V110Z" fill="#CCFBEF" stroke="#10B981" stroke-width="3"/>
+
+                                        <!-- Semarang Coastal Zone Highlight -->
+                                        <path d="M155 108C185 104 218 96 242 104C252 122 238 148 205 152C172 155 148 132 155 108Z" fill="#99F6E0" stroke="#059669" stroke-width="2" stroke-dasharray="4 3"/>
+
+                                        <!-- Agricultural Heartland Zone Highlight -->
+                                        <path d="M95 175C145 162 245 165 295 190C310 225 275 262 195 265C115 268 75 225 95 175Z" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="4 3"/>
+
+                                        <!-- Supply Route Dashed Line -->
+                                        <path d="M202 122C195 155 175 182 162 208" stroke="#064E3B" stroke-width="2.5" stroke-dasharray="5 5"/>
+
+                                        <!-- Labels -->
+                                        <text x="202" y="80" text-anchor="middle" fill="#047857" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="11">KOTA SEMARANG</text>
+                                        <text x="195" y="250" text-anchor="middle" fill="#6D28D9" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="11">SENTRA PERTANIAN JAWA TENGAH</text>
+                                    </svg>
+
+                                    <!-- Interactive Pin 1: Semarang -->
+                                    <button onclick="highlightPin(1)" style="top: 34%; left: 48%;" class="map-pin-pulse text-mint-600 absolute -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-mint-600 text-white font-display font-extrabold text-sm flex items-center justify-center border-2 border-white shadow-md cursor-pointer z-10" title="Sentra Pengolahan Bandeng Kota Semarang">
+                                        1
+                                    </button>
+
+                                    <!-- Interactive Pin 2: Central Java Farmers -->
+                                    <button onclick="highlightPin(2)" style="top: 66%; left: 38%;" class="map-pin-pulse text-lavender-600 absolute -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-lavender-600 text-white font-display font-extrabold text-sm flex items-center justify-center border-2 border-white shadow-md cursor-pointer z-10" title="Petani Lokal Jawa Tengah">
+                                        2
+                                    </button>
+                                </div>
+
+                                <!-- Active Pin Info Banner -->
+                                <div id="active-pin-banner" class="mt-3 p-3 rounded-xl bg-mint-50 border border-mint-200 text-xs sm:text-sm text-mint-900 font-medium">
+                                    🐟 <strong>Pin 1 (Kota Semarang):</strong> Sentra pengolahan ikan bandeng pesisir Semarang menyediakan bahan baku sisik segar berkualitas tinggi setiap hari.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. "FAQ" SECTION (Frequently Asked Questions) -->
+        <section id="faq" class="py-16 sm:py-24 bg-slate-50 border-t border-slate-100">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-mint-100 text-mint-800 text-xs font-bold uppercase tracking-wider mb-3">Pertanyaan Orang Tua</span>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-slate-900 mb-3">
+                        Pertanyaan yang Sering Diajukan (FAQ)
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base">
+                        Jawaban cepat untuk memastikan Ayah & Bunda tenang memberikan BANPORE-PRO pada si kecil.
+                    </p>
+                </div>
+
+                <!-- Accordion List -->
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item active bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                        <button onclick="toggleFaq(this)" class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-slate-900 hover:text-mint-700 transition cursor-pointer">
+                            <span>Apakah aman untuk bayi 6 bulan?</span>
+                            <span class="faq-icon w-8 h-8 rounded-full bg-mint-50 text-mint-700 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-inner">
+                                <div class="px-5 sm:px-6 pb-6 pt-1 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100">
+                                    <strong>Ya, sangat aman.</strong> BANPORE-PRO diformulasikan khusus sesuai standar gizi dan tekstur <strong>SNI MP-ASI</strong> untuk bayi mulai usia 6 bulan ke atas, sehingga lembut, mudah dicerna, dan aman dikonsumsi setiap hari.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                        <button onclick="toggleFaq(this)" class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-slate-900 hover:text-mint-700 transition cursor-pointer">
+                            <span>Apakah rasanya amis karena dari ikan?</span>
+                            <span class="faq-icon w-8 h-8 rounded-full bg-mint-50 text-mint-700 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-inner">
+                                <div class="px-5 sm:px-6 pb-6 pt-1 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100">
+                                    <strong>Tidak sama sekali!</strong> Berkat ekstraksi khusus serta formulasi terbaik (F1) yang dipadukan dengan tepung bayam dan kacang hijau, bau amis hilang sepenuhnya. Hasil uji organoleptik membuktikan skor rasa dan aroma mencapai <strong>4,0+ dari 5,0</strong>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                        <button onclick="toggleFaq(this)" class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-slate-900 hover:text-mint-700 transition cursor-pointer">
+                            <span>Bagaimana cara membelinya?</span>
+                            <span class="faq-icon w-8 h-8 rounded-full bg-mint-50 text-mint-700 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-inner">
+                                <div class="px-5 sm:px-6 pb-6 pt-1 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100">
+                                    Ayah & Bunda dapat memesan langsung secara praktis melalui tombol WhatsApp resmi kami di bawah ini. Tersedia pembelian satuan (<strong>Rp 3.500/sajian</strong>) maupun paket hemat mingguan.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. CALL TO ACTION (Primary Order & Secondary Village/Posyandu Collaboration) -->
+        <section id="pesan" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-6 lg:gap-8">
+                    <!-- Primary CTA Card: For Parents & Families -->
+                    <div class="lg:col-span-7 bg-gradient-to-br from-mint-600 to-mint-700 rounded-3xl p-7 sm:p-10 text-white flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-3.5 py-1 rounded-full bg-white/15 text-mint-50 text-xs font-bold uppercase tracking-wider mb-4">
+                                Untuk Ayah, Bunda & Keluarga
+                            </span>
+                            <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight mb-4">
+                                Bantu Cegah Stunting di Sekitarmu! Pesan BANPORE-PRO Sekarang
+                            </h2>
+                            <p class="text-mint-50 text-sm sm:text-base leading-relaxed mb-8">
+                                Mulai langkah kecil penuh gizi untuk masa depan buah hati dengan MP-ASI kolagen sisik bandeng Rp 3.500/sajian.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+                            <button onclick="openOrderModal()" class="px-6 py-4 rounded-2xl bg-white hover:bg-mint-50 text-mint-800 font-display font-extrabold text-base transition flex items-center justify-center gap-2.5 cursor-pointer">
+                                <span>🛒 Hitung & Pesan via WhatsApp</span>
+                            </button>
+                            <span class="text-xs text-mint-100 text-center sm:text-left">
+                                Stok segar dibuat rutin • Siap kirim area Semarang & sekitarnya
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Secondary CTA Card: For Desa, Kelurahan, & Posyandu Collaboration -->
+                    <div class="lg:col-span-5 bg-lavender-50 border-2 border-lavender-200 rounded-3xl p-7 sm:p-10 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-3.5 py-1 rounded-full bg-lavender-100 text-lavender-700 text-xs font-bold uppercase tracking-wider mb-4">
+                                Kemitraan Sosial & Kader
+                            </span>
+                            <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 leading-snug mb-3">
+                                Ingin Berkolaborasi untuk Program Pencegahan Stunting di Desa/Kelurahan Anda? Hubungi Kami!
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-7">
+                                Kami terbuka untuk kerja sama penyediaan PMT (Pemberian Makanan Tambahan) Posyandu, PKK, Puskesmas, maupun program CSR desa bebas stunting.
+                            </p>
+                        </div>
+
+                        <button onclick="openCollabModal()" class="w-full px-6 py-4 rounded-2xl bg-lavender-600 hover:bg-lavender-700 text-white font-display font-bold text-base transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>🤝 Ajukan Kolaborasi Desa / Posyandu</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 9. FOOTER -->
+    <footer class="bg-slate-900 text-slate-300 py-12 sm:py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 pb-10 border-b border-slate-800">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <div class="w-9 h-9 rounded-xl bg-mint-500 flex items-center justify-center text-white font-display font-extrabold">B</div>
+                        <span class="font-display font-extrabold text-xl text-white">BANPORE<span class="text-mint-400">-PRO</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                        MP-ASI Fungsional berbasis Kolagen Sisik Ikan Bandeng, Kacang Hijau, dan Bayam. Tinggi Protein 18,5%, Lolos SNI, dan Zero Waste.
+                    </p>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 text-mint-400 text-xs font-semibold border border-slate-700">
+                        📍 Bangga Buatan Kota Semarang, Jawa Tengah
+                    </span>
+                </div>
+
+                <!-- Quick Navigation -->
+                <div>
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Navigasi Cepat</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#masalah" class="hover:text-mint-400 transition">Fakta Stunting & Limbah</a></li>
+                        <li><a href="#cara-kerja" class="hover:text-mint-400 transition">Cara Kerja di Tubuh (IGF-1R & BMP-2)</a></li>
+                        <li><a href="#keunggulan" class="hover:text-mint-400 transition">Perbandingan MP-ASI</a></li>
+                        <li><a href="#testimoni" class="hover:text-mint-400 transition">Testimoni Uji Organoleptik</a></li>
+                        <li><a href="#faq" class="hover:text-mint-400 transition">Pertanyaan Umum (FAQ)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Order -->
+                <div>
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Layanan & Kemitraan</h4>
+                    <p class="text-sm text-slate-400 mb-4">
+                        Pemesanan individu maupun pengadaan paket PMT Posyandu & Kelurahan.
+                    </p>
+                    <div class="flex flex-col gap-2.5">
+                        <button onclick="openOrderModal()" class="px-4 py-2.5 rounded-xl bg-mint-600 hover:bg-mint-500 text-white text-sm font-bold text-center transition cursor-pointer">
+                            Pesan BANPORE-PRO (Rp 3.500/saji)
+                     
